@@ -1,7 +1,7 @@
 {
   "name": "@patchstep/falsetype",
   "version": "0.1.0",
-  "description": "The Wplace canvas alphabet as a whole-pixel font. No curves, no antialiasing at 1rem multiples.",
+  "description": "A bitmap font by Mia Riezebos, packaged as whole-pixel outlines. No curves, no antialiasing at the right sizes.",
   "type": "module",
   "license": "OFL-1.1",
   "repository": "github:patchstep/FalseType",

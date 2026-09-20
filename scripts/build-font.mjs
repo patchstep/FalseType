@@ -4,7 +4,7 @@ import opentype from 'opentype.js'
 import sharp from 'sharp'
 import wawoff2 from 'wawoff2'
 
-// One canvas pixel is 100 units of a 1200 unit em: 12 pixels per em, so 12px renders 1:1, 24px 2:1,
+// One font pixel is 100 units of a 1200 unit em: 12 pixels per em, so 12px renders 1:1, 24px 2:1,
 // 36px 3:1. Caps take two thirds of the em, close to Arial and Archivo, so FalseType at a given size
 // looks the size of a text face at the same size.
 const UNIT = 100

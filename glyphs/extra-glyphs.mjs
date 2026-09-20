@@ -1,5 +1,5 @@
 /**
- * Printable ASCII the Wplace canvas alphabet does not have, drawn in its style: 1px strokes, caps
+ * Glyphs beyond the drawn letters, in the same style: 1px strokes, caps
  * 8 rows tall on an 11 row line with a 3 row descender, rounded corners where the letters have them,
  * 5 columns wide unless the shape needs fewer. Rows are top to bottom, `#` is ink.
  */
