@@ -19,18 +19,23 @@ Copy `dist/FalseType.woff2` into your site and size it in whole rem:
 
 .logo {
   font-family: 'FalseType', monospace;
-  font-size: 2rem; /* 1rem is 1:1, 2rem 2:1, 3rem 3:1 */
+  font-size: 2.25rem; /* whole multiples of 0.75rem: 12px is 1:1, 24px 2:1, 36px 3:1 */
   line-height: 1;
   letter-spacing: 0;
   font-kerning: none;
 }
 ```
 
-One canvas pixel is 64 units of a 1024 unit em. Caps are 8 pixels, x-height 5, descenders 3, and
-every letter advances its width plus 1. Ascent and descent fill the em with the baseline 11 pixels
-down, so with `line-height: 1` the x-height sits where a typical text face's does and reads level
-beside ordinary UI text. At any size that is not a whole multiple of 1rem, or in a browser zoomed to
-anything but 100%, the pixels fall off the device grid and blur.
+One canvas pixel is 100 units of a 1200 unit em, so the em is 12 canvas pixels: 9 above the baseline
+and 3 below. Caps are 8 pixels, two thirds of the em like Arial or Archivo, so FalseType at a size
+looks about as big as a text face at that size. x-height is 5, descenders 3, and every letter advances
+its width plus 1. With `line-height: 1` the x-height sits half a pixel below the line's centre, where
+text faces put it, so it reads level beside ordinary UI text.
+
+Pixel-perfect sizes are whole multiples of 12px: 0.75rem, 1.5rem, 2.25rem, 3rem. Anything else, or a
+browser zoomed to anything but 100%, puts the pixels off the device grid and blurs them. Accents on
+capitals reach two canvas pixels above the em; a container with `overflow: hidden` needs
+`overflow: clip; overflow-clip-margin: 0.25em` instead so they survive.
 
 ## Charset
 

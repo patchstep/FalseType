@@ -4,8 +4,10 @@ import opentype from 'opentype.js'
 import sharp from 'sharp'
 import wawoff2 from 'wawoff2'
 
-// One canvas pixel is 64 units of a 1024 unit em, so 16px renders 1:1, 2rem 2:1 and 3rem 3:1.
-const UNIT = 64
+// One canvas pixel is 100 units of a 1200 unit em: 12 pixels per em, so 12px renders 1:1, 24px 2:1,
+// 36px 3:1. Caps take two thirds of the em, close to Arial and Archivo, so FalseType at a given size
+// looks the size of a text face at the same size.
+const UNIT = 100
 const meta = JSON.parse(readFileSync(new URL('../glyphs/sheet.json', import.meta.url), 'utf8'))
 const { data, info } = await sharp(new URL('../glyphs/sheet.png', import.meta.url).pathname)
   .raw()
@@ -89,16 +91,17 @@ for (const g of meta.glyphs) {
     }),
   )
 }
-// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading. The baseline sits 11
-// canvas pixels down, which puts the x-height's centre half a pixel below the line's centre, the same
-// place a typical text face's x-height sits, so it reads level beside ordinary UI text.
-const ASCENT = 11 * UNIT
-const DESCENT = 1024 - ASCENT
+// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading. Nine canvas pixels
+// above the baseline leave one row over the caps and put the x-height's centre half a pixel below
+// the line's centre, where a text face's x-height sits, so it reads level beside ordinary UI text.
+// Marks over capitals reach two rows above the ascent; give clipped containers a clip margin.
+const ASCENT = 9 * UNIT
+const DESCENT = 3 * UNIT
 
 const font = new opentype.Font({
   familyName: 'FalseType',
   styleName: 'Regular',
-  unitsPerEm: 1024,
+  unitsPerEm: 12 * UNIT,
   ascender: ASCENT,
   descender: -DESCENT,
   glyphs,
