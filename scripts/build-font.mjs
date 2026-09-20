@@ -89,11 +89,10 @@ for (const g of meta.glyphs) {
     }),
   )
 }
-// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading. The baseline sits
-// 10.5 canvas pixels down, which centres the 5 pixel x-height exactly: at 2rem the baseline lands on
-// pixel 21 of 32. At odd multiples of 1rem it lands on a half pixel; give those a line-height one
-// pixel taller than the font size to put it back on the grid.
-const ASCENT = 10.5 * UNIT
+// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading. The baseline sits 11
+// canvas pixels down, which puts the x-height's centre half a pixel below the line's centre, the same
+// place a typical text face's x-height sits, so it reads level beside ordinary UI text.
+const ASCENT = 11 * UNIT
 const DESCENT = 1024 - ASCENT
 
 const font = new opentype.Font({
