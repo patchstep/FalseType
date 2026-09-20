@@ -26,16 +26,15 @@ Copy `dist/FalseType.woff2` into your site and size it in whole rem:
 }
 ```
 
-One canvas pixel is 100 units of a 1200 unit em, so the em is 12 canvas pixels: 9 above the baseline
-and 3 below. Caps are 8 pixels, two thirds of the em like Arial or Archivo, so FalseType at a size
-looks about as big as a text face at that size. x-height is 5, descenders 3, and every letter advances
-its width plus 1. With `line-height: 1` the x-height sits half a pixel below the line's centre, where
-text faces put it, so it reads level beside ordinary UI text.
+One canvas pixel is 100 units of a 1200 unit em, so the em is 12 canvas pixels: 10 above the
+baseline and 2 below. Caps are 8 pixels, two thirds of the em like Arial or Archivo, so FalseType at
+a size looks about as big as a text face at that size, and with `line-height: 1` its baseline lands
+where theirs does. x-height is 5, descenders 3, and every letter advances its width plus 1.
 
 Pixel-perfect sizes are whole multiples of 12px: 0.75rem, 1.5rem, 2.25rem, 3rem. Anything else, or a
-browser zoomed to anything but 100%, puts the pixels off the device grid and blurs them. Accents on
-capitals reach two canvas pixels above the em; a container with `overflow: hidden` needs
-`overflow: clip; overflow-clip-margin: 0.25em` instead so they survive.
+browser zoomed to anything but 100%, puts the pixels off the device grid and blurs them. Descenders
+reach one canvas pixel below the em and accents on capitals one above it; a container with
+`overflow: hidden` needs `overflow: clip; overflow-clip-margin: 0.25em` instead so they survive.
 
 ## Charset
 

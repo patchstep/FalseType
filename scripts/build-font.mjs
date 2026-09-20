@@ -91,12 +91,13 @@ for (const g of meta.glyphs) {
     }),
   )
 }
-// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading. Nine canvas pixels
-// above the baseline leave one row over the caps and put the x-height's centre half a pixel below
-// the line's centre, where a text face's x-height sits, so it reads level beside ordinary UI text.
-// Marks over capitals reach two rows above the ascent; give clipped containers a clip margin.
-const ASCENT = 9 * UNIT
-const DESCENT = 3 * UNIT
+// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading, and the baseline sits
+// ten twelfths of the way down the box. That is where Arial, Helvetica and Archivo put theirs once
+// their negative half-leading is counted, so FalseType shares a baseline with them at the same size.
+// Descenders reach one row below the em and marks over capitals one row above it; give clipped
+// containers a clip margin.
+const ASCENT = 10 * UNIT
+const DESCENT = 2 * UNIT
 
 const font = new opentype.Font({
   familyName: 'FalseType',
