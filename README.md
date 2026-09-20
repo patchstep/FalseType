@@ -14,6 +14,7 @@ Copy `dist/FalseType.woff2` into your site and size it in whole rem:
 @font-face {
   font-family: 'FalseType';
   src: url('/fonts/FalseType.woff2') format('woff2');
+  font-weight: 100 900; /* one face answers every weight */
   font-display: block;
 }
 
@@ -23,8 +24,13 @@ Copy `dist/FalseType.woff2` into your site and size it in whole rem:
   line-height: 1;
   letter-spacing: 0;
   font-kerning: none;
+  font-synthesis: none; /* no faked bold or italic; both render as regular for now */
 }
 ```
+
+There is one face. Browsers fake bold by smearing and italic by shearing, which puts every pixel
+between two others, so turn synthesis off and bold or italic text renders regular until those glyphs
+exist.
 
 One canvas pixel is 100 units of a 1200 unit em, so the em is 12 canvas pixels: 10 above the
 baseline and 2 below. Caps are 8 pixels, two thirds of the em like Arial or Archivo, so FalseType at
