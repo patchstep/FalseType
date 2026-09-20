@@ -27,9 +27,11 @@ Copy `dist/FalseType.woff2` into your site and size it in whole rem:
 ```
 
 One canvas pixel is 64 units of a 1024 unit em. Caps are 8 pixels, x-height 5, descenders 3, and
-every letter advances its width plus 1. The ascender is 11 pixels and the descender 5, so with
-`line-height: 1` the caps sit centred on the line. At any size that is not a whole multiple of 1rem
-the pixels fall off the device grid and blur.
+every letter advances its width plus 1. Ascent and descent fill the em with the baseline 10.5 pixels
+down, so with `line-height: 1` the x-height sits exactly centred on the line. That is a whole pixel
+at even multiples of 1rem; at odd multiples (1rem, 3rem) set `line-height` to the font size plus 1px
+to put the baseline back on the grid. At any size that is not a whole multiple of 1rem, or in a
+browser zoomed to anything but 100%, the pixels fall off the device grid and blur.
 
 ## Charset
 

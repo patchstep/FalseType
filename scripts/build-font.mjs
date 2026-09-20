@@ -89,16 +89,26 @@ for (const g of meta.glyphs) {
     }),
   )
 }
+// Ascent plus descent fills the em, so `line-height: 1` adds no half-leading. The baseline sits
+// 10.5 canvas pixels down, which centres the 5 pixel x-height exactly: at 2rem the baseline lands on
+// pixel 21 of 32. At odd multiples of 1rem it lands on a half pixel; give those a line-height one
+// pixel taller than the font size to put it back on the grid.
+const ASCENT = 10.5 * UNIT
+const DESCENT = 1024 - ASCENT
+
 const font = new opentype.Font({
   familyName: 'FalseType',
   styleName: 'Regular',
   unitsPerEm: 1024,
-  // Ascender plus descender fills the em, so `line-height: 1` adds no half-leading and the baseline
-  // sits 11 canvas pixels down: 8 rows of caps end 5 below centre, the 5 row x-height starts 1 above.
-  // Both stay on the pixel grid at every whole multiple of 1rem.
-  ascender: 11 * UNIT,
-  descender: -(16 - 11) * UNIT,
+  ascender: ASCENT,
+  descender: -DESCENT,
   glyphs,
+  // Browsers disagree on which table to read. Chrome on macOS takes usWinAscent/usWinDescent, which
+  // opentype.js would otherwise fill from the glyph extents, so set every table to the same numbers
+  // and raise USE_TYPO_METRICS so the typo pair wins where that flag is honoured.
+  tables: {
+    os2: { usWinAscent: ASCENT, usWinDescent: DESCENT, fsSelection: 64 | 128 },
+  },
 })
 const otf = Buffer.from(font.toArrayBuffer())
 writeFileSync(new URL('../dist/FalseType.otf', import.meta.url), otf)
