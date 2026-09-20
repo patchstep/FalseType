@@ -1,8 +1,6 @@
 # FalseType
 
-The [Wplace](https://wplace.live) canvas alphabet as a font. Every glyph is whole pixels traced into
-rectilinear outlines, so at the right size the browser draws it with no antialiasing at all. The name
-is a dig at TrueType.
+yet another pixel-perfect font. pun on truetype cause it's not anti-aliased.
 
 ![Charset preview](glyphs/charset-preview@8x.png)
 
