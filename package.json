@@ -1,0 +1,19 @@
+{
+  "name": "@patchstep/falsetype",
+  "version": "0.1.0",
+  "description": "The Wplace canvas alphabet as a whole-pixel font. No curves, no antialiasing at 1rem multiples.",
+  "type": "module",
+  "license": "OFL-1.1",
+  "repository": "github:patchstep/FalseType",
+  "files": ["dist"],
+  "scripts": {
+    "build": "npm run build:sheet && npm run build:font",
+    "build:sheet": "node scripts/build-sheet.mjs",
+    "build:font": "node scripts/build-font.mjs"
+  },
+  "devDependencies": {
+    "opentype.js": "1.3.4",
+    "sharp": "^0.35.4",
+    "wawoff2": "2.0.1"
+  }
+}
